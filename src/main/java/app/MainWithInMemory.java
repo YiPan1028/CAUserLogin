@@ -52,18 +52,19 @@ public class MainWithInMemory {
 
         // TODO Task 1.1 in a copy of this file, change this line to use the in-memory DAO.
         // final DBUserDataAccessObject userDataAccessObject = new DBUserDataAccessObject(new CommonUserFactory());
-        final InMemoryUserDataAccessObject userDataAccessObject = new InMemoryUserDataAccessObject();
+        final InMemoryUserDataAccessObject inMemoryUserDataAccessObject = new InMemoryUserDataAccessObject();
+        // InMemoryUserDataAccessObject
 
         final SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel,
-                                                                  signupViewModel, userDataAccessObject);
+                                                                  signupViewModel, inMemoryUserDataAccessObject);
         views.add(signupView, signupView.getViewName());
 
         final LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel,
-                                                               loggedInViewModel, userDataAccessObject);
+                                                               loggedInViewModel, inMemoryUserDataAccessObject);
         views.add(loginView, loginView.getViewName());
 
         final LoggedInView loggedInView = ChangePasswordUseCaseFactory.create(viewManagerModel,
-                                                                              loggedInViewModel, userDataAccessObject);
+                                                                              loggedInViewModel, inMemoryUserDataAccessObject);
         views.add(loggedInView, loggedInView.getViewName());
 
         viewManagerModel.setState(signupView.getViewName());
